@@ -1,4 +1,25 @@
+const axios = require('axios');
 
+const getStockPageText = async (res, shortcut) => {
+
+    try {
+
+        const rawData = await axios.get(`https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=${shortcut}`)
+        const pageHTMLText = await JSON.stringify(rawData.data)
+        const data = getStockData(pageHTMLText);
+
+        if (getStockData === false) {
+            res.send(`Błąd podczas pobierania danych.`)
+        } else {
+            res.send(data)
+        }
+
+
+    } catch (err) {
+        res.send(`Bład`)
+    }
+
+}
 
 const getStockData = (pageHTMLText) => {
     const searchIndex = pageHTMLText.search(`profilLast`)
@@ -7,7 +28,7 @@ const getStockData = (pageHTMLText) => {
     if (isTextPartFound) return false
 
     const searchText = pageHTMLText.substring(searchIndex, searchIndex + 300);
-    const searchRegex = /[0-9,]+/gim;
+    const searchRegex = /[0-9,-]+/gim;
     const searchValues = searchText.match(searchRegex)
     const isValuesNotFound = searchValues.length === 3 ? false : true;
 
@@ -22,6 +43,56 @@ const getStockData = (pageHTMLText) => {
     return stockData
 }
 
+
+const getWig20 = (pageHTMLText) => {
+    const searchIndex = pageHTMLText.search(`profilLast`)
+    const isTextPartFound = searchIndex < 0 ? true : false;
+
+    if (isTextPartFound) return false
+
+    let searchText = pageHTMLText.substring(searchIndex, searchIndex + 200);
+    searchText = searchText.replace(`&nbsp;`, ``);
+    const searchRegex = /[0-9,-]+/gim;
+    const searchValues = searchText.match(searchRegex)
+    const isValuesNotFound = searchValues.length === 3 ? false : true;
+
+    if (isValuesNotFound) return false
+
+    const wig20 = {
+        value: searchValues[0],
+        percentageChange: searchValues[1],
+        changeValue: searchValues[2],
+    }
+
+    return wig20
+}
+const getWig20PageText = async (res) => {
+
+    try {
+
+        const rawData = await axios.get(`https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=WIG20`)
+        const pageHTMLText = await JSON.stringify(rawData.data)
+        const data = getWig20(pageHTMLText);
+
+        if (getStockData === false) {
+            res.send(`Błąd podczas pobierania danych.`)
+        } else {
+            res.send(data)
+        }
+
+
+    } catch (err) {
+        res.send(`Bład`)
+    }
+
+
+}
+
+
+// poprawic  o wykrywanie minusa
+
 module.exports = {
-    getStockData
+    getStockData,
+    getStockPageText,
+    getWig20PageText,
 }
