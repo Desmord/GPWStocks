@@ -88,9 +88,6 @@ const getWig20PageText = async (res) => {
 
 }
 
-
-// poprawic  o wykrywanie minusa
-
 module.exports = {
     getStockData,
     getStockPageText,

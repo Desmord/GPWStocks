@@ -4,7 +4,7 @@ const cros = require(`cors`);
 const PORT = process.env.PORT || 8080;
 const {
     getWig20PageText,
-    getStockPageText
+    getStockPageText,
 } = require(`./Utilities`)
 // const MENU_SITE_SRC = `build`;
 
