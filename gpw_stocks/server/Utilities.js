@@ -1,12 +1,12 @@
 const axios = require('axios');
 
-const getStockPageText = async (res, shortcut) => {
+const getStockData = async (res, shortcut) => {
 
     try {
 
         const rawData = await axios.get(`https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=${shortcut}`)
         const pageHTMLText = await JSON.stringify(rawData.data)
-        const data = getStockData(pageHTMLText);
+        const data = getStock(pageHTMLText);
 
         if (getStockData === false) {
             res.send(`Błąd podczas pobierania danych.`)
@@ -21,7 +21,7 @@ const getStockPageText = async (res, shortcut) => {
 
 }
 
-const getStockData = (pageHTMLText) => {
+const getStock = (pageHTMLText) => {
     const searchIndex = pageHTMLText.search(`profilLast`)
     const isTextPartFound = searchIndex < 0 ? true : false;
 
@@ -66,7 +66,7 @@ const getWig20 = (pageHTMLText) => {
 
     return wig20
 }
-const getWig20PageText = async (res) => {
+const getWig20Data = async (res) => {
 
     try {
 
@@ -89,7 +89,6 @@ const getWig20PageText = async (res) => {
 }
 
 module.exports = {
+    getWig20Data,
     getStockData,
-    getStockPageText,
-    getWig20PageText,
 }
