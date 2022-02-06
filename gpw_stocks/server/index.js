@@ -3,8 +3,8 @@ const app = express();
 const cros = require(`cors`);
 const PORT = process.env.PORT || 8080;
 const {
-    getWig20PageText,
-    getStockPageText,
+    getStock,
+    getWig20,
 } = require(`./Utilities`)
 // const MENU_SITE_SRC = `build`;
 
@@ -15,11 +15,11 @@ app.use(express.json());
 
 app.post('/getStock', (req, res) => {
     const { shortcut } = req.body;
-    getStockPageText(res, shortcut)
+    getStock(res, shortcut)
 })
 
 app.get(`/getWig20`, (req, res) => {
-    getWig20PageText(res)
+    getWig20(res)
 })
 
 app.use((req, res) => {
