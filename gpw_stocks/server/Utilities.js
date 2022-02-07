@@ -66,29 +66,64 @@ const getWig20Data = (pageHTMLText) => {
 
     return wig20
 }
+
+
+const returnData = async (pageHTMLText, res) => {
+    const data = getWig20Data(pageHTMLText);
+
+    if (getStockData === false) {
+        res.send(`Błąd podczas pobierania danych.`)
+    } else {
+        res.send(data)
+    }
+}
+
 const getWig20 = async (res) => {
 
     try {
 
         const rawData = await axios.get(`https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=WIG20`)
         const pageHTMLText = await JSON.stringify(rawData.data)
-        const data = getWig20Data(pageHTMLText);
-
-        if (getStockData === false) {
-            res.send(`Błąd podczas pobierania danych.`)
-        } else {
-            res.send(data)
-        }
-
+        returnData(pageHTMLText, res)
 
     } catch (err) {
         res.send(`Bład`)
     }
 
+}
+
+
+const getWig40 = async (res) => {
+
+    try {
+
+        const rawData = await axios.get(`https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=MWIG40`)
+        const pageHTMLText = await JSON.stringify(rawData.data)
+        returnData(pageHTMLText, res)
+
+    } catch (err) {
+        res.send(`Bład`)
+    }
+
+}
+
+const getWig80 = async (res) => {
+
+    try {
+
+        const rawData = await axios.get(`https://www.bankier.pl/inwestowanie/profile/quote.html?symbol=SWIG80`)
+        const pageHTMLText = await JSON.stringify(rawData.data)
+        returnData(pageHTMLText, res)
+
+    } catch (err) {
+        res.send(`Bład`)
+    }
 
 }
 
 module.exports = {
     getStock,
     getWig20,
+    getWig40,
+    getWig80,
 }

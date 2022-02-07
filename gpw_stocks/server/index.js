@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 8080;
 const {
     getStock,
     getWig20,
+    getWig40,
+    getWig80,
 } = require(`./Utilities`)
 // const MENU_SITE_SRC = `build`;
 
@@ -20,6 +22,14 @@ app.post('/getStock', (req, res) => {
 
 app.get(`/getWig20`, (req, res) => {
     getWig20(res)
+})
+
+app.get(`/getWig40`, (req, res) => {
+    getWig40(res)
+})
+
+app.get(`/getWig80`, (req, res) => {
+    getWig80(res)
 })
 
 app.use((req, res) => {
