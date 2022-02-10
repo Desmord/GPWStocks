@@ -8,6 +8,7 @@ import {
 
 import Info from "./Components/Info/Info";
 import Loader from "./Components/Loader/Loader";
+import Main from "./Components/Main/Main";
 
 const Container = styled.div`
   width: 100vw;
@@ -21,6 +22,7 @@ const Container = styled.div`
 
 const App = () => {
     const [displayLoader, setDisplayLoader] = useState(true);
+    const [displayMain, setDisplayMain] = useState(false);
     const [displayInfo, setDisplayInfo] = useState(false);
     const [infoText, setInfoText] = useState(`Bład podczas połączenia spróbuj ponownie.`);
     const [loaderText, setLoaderText] = useState(`Wczytywanie 0/23...`);
@@ -131,6 +133,7 @@ const App = () => {
         // getWig(ADRESSES.SERVER_URL_GET_WIG_40, setWig40);
         // getWig(ADRESSES.SERVER_URL_GET_WIG_80, setWig80);
         // getWig20Stocks()
+        // test Data
         setTestStocksData()
         // eslint-disable-next-line
     }, [])
@@ -142,7 +145,7 @@ const App = () => {
     useEffect(() => {
         if (isLoaded) {
             setDisplayLoader(false)
-            // tutaj display content
+            setDisplayMain(true)
         }
     }, [isLoaded])
 
@@ -151,6 +154,7 @@ const App = () => {
             <Container>
                 <Loader displayLoader={displayLoader} loaderText={loaderText} />
                 <Info displayInfo={displayInfo} infoText={infoText} />
+                <Main displayMain={displayMain} />
             </Container>
         </ThemeProvider>
     )
