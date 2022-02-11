@@ -53,9 +53,9 @@ const App = () => {
             const response = await rawResponse.json();
 
             setWigStatus({
-                value: parseFloat(response.value),
-                percentageChange: parseFloat(response.percentageChange),
-                changeValue: parseFloat(response.changeValue),
+                value: parseFloat(response.value.replace(`,`, `.`)),
+                percentageChange: parseFloat(response.percentageChange.replace(`,`, `.`)),
+                changeValue: parseFloat(response.changeValue.replace(`,`, `.`)),
             })
             setLodaerState((prev: number) => prev + 1)
 
@@ -97,11 +97,10 @@ const App = () => {
             if (data) {
                 const newObject = {
                     name: stock,
-                    value: parseFloat(data.value),
-                    percentageChange: parseFloat(data.percentageChange),
-                    changeValue: parseFloat(data.changeValue),
+                    value: parseFloat(data.value.replace(`,`, `.`)),
+                    percentageChange: parseFloat(data.percentageChange.replace(`,`, `.`)),
+                    changeValue: parseFloat(data.changeValue.replace(`,`, `.`)),
                 }
-
                 stocks.push(newObject)
                 setLodaerState((prev: number) => prev + 1)
             }
@@ -128,13 +127,13 @@ const App = () => {
     }
 
     useEffect(() => {
-        // setLodaerState(0)
+        setLodaerState(0)
         // getWig(ADRESSES.SERVER_URL_GET_WIG_20, setWig20);
         // getWig(ADRESSES.SERVER_URL_GET_WIG_40, setWig40);
         // getWig(ADRESSES.SERVER_URL_GET_WIG_80, setWig80);
         // getWig20Stocks()
         // test Data
-        setTestStocksData()
+        // setTestStocksData()
         // eslint-disable-next-line
     }, [])
 
@@ -154,7 +153,11 @@ const App = () => {
             <Container>
                 <Loader displayLoader={displayLoader} loaderText={loaderText} />
                 <Info displayInfo={displayInfo} infoText={infoText} />
-                <Main displayMain={displayMain} />
+                <Main
+                    displayMain={displayMain}
+                    wig20={wig20}
+                    wig40={wig40}
+                    wig80={wig80} />
             </Container>
         </ThemeProvider>
     )
