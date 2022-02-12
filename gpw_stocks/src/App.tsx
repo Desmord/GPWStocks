@@ -17,7 +17,6 @@ const Container = styled.div`
   place-content:center;
   background-color: ${({ theme }) => theme.colors.appBackground};
   color: ${({ theme }) => theme.colors.fontColor};
-
 `
 
 const App = () => {
@@ -53,9 +52,9 @@ const App = () => {
             const response = await rawResponse.json();
 
             setWigStatus({
-                value: parseFloat(response.value),
-                percentageChange: parseFloat(response.percentageChange),
-                changeValue: parseFloat(response.changeValue),
+                value: parseFloat(response.value.replace(`,`, `.`)),
+                percentageChange: parseFloat(response.percentageChange.replace(`,`, `.`)),
+                changeValue: parseFloat(response.changeValue.replace(`,`, `.`)),
             })
             setLodaerState((prev: number) => prev + 1)
 
@@ -97,11 +96,10 @@ const App = () => {
             if (data) {
                 const newObject = {
                     name: stock,
-                    value: parseFloat(data.value),
-                    percentageChange: parseFloat(data.percentageChange),
-                    changeValue: parseFloat(data.changeValue),
+                    value: parseFloat(data.value.replace(`,`, `.`)),
+                    percentageChange: parseFloat(data.percentageChange.replace(`,`, `.`)),
+                    changeValue: parseFloat(data.changeValue.replace(`,`, `.`)),
                 }
-
                 stocks.push(newObject)
                 setLodaerState((prev: number) => prev + 1)
             }
@@ -154,7 +152,12 @@ const App = () => {
             <Container>
                 <Loader displayLoader={displayLoader} loaderText={loaderText} />
                 <Info displayInfo={displayInfo} infoText={infoText} />
-                <Main displayMain={displayMain} />
+                <Main
+                    displayMain={displayMain}
+                    wig20={wig20}
+                    wig40={wig40}
+                    wig80={wig80}
+                    stocks={wig20Stocks} />
             </Container>
         </ThemeProvider>
     )
