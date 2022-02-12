@@ -17,7 +17,6 @@ const Container = styled.div`
   place-content:center;
   background-color: ${({ theme }) => theme.colors.appBackground};
   color: ${({ theme }) => theme.colors.fontColor};
-
 `
 
 const App = () => {
@@ -127,13 +126,13 @@ const App = () => {
     }
 
     useEffect(() => {
-        setLodaerState(0)
+        // setLodaerState(0)
         // getWig(ADRESSES.SERVER_URL_GET_WIG_20, setWig20);
         // getWig(ADRESSES.SERVER_URL_GET_WIG_40, setWig40);
         // getWig(ADRESSES.SERVER_URL_GET_WIG_80, setWig80);
         // getWig20Stocks()
         // test Data
-        // setTestStocksData()
+        setTestStocksData()
         // eslint-disable-next-line
     }, [])
 
@@ -157,7 +156,8 @@ const App = () => {
                     displayMain={displayMain}
                     wig20={wig20}
                     wig40={wig40}
-                    wig80={wig80} />
+                    wig80={wig80}
+                    stocks={wig20Stocks} />
             </Container>
         </ThemeProvider>
     )

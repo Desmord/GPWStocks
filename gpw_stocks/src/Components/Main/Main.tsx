@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useShowHide from "../../CustomHooks/useShowHide";
 
 import WigIndexes from "../WigIndexes/WigIndexes";
+import WigStocks from "../WigStocks/WigStocks";
 
 const Container = styled.div<{ isDisplay: boolean, isShown: boolean }>`
     position:relative;
@@ -27,11 +28,13 @@ const Main = ({
     wig20,
     wig40,
     wig80,
+    stocks,
 }: {
     displayMain: boolean,
     wig20: any,
     wig40: any,
     wig80: any,
+    stocks: any[]
 }) => {
     const { isDisplay, isShown, } = useShowHide(displayMain)
 
@@ -41,7 +44,7 @@ const Main = ({
                 wig20={wig20}
                 wig40={wig40}
                 wig80={wig80} />
-            <div>akcjie</div>
+            <WigStocks stocks={stocks} />
         </Container>
     )
 }
