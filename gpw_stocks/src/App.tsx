@@ -110,29 +110,12 @@ const App = () => {
 
     }
 
-    const setTestStocksData = () => {
-        let stocks = [];
-
-        for (let i = 1; i < 20; i++) {
-            stocks.push({
-                name: i,
-                value: i,
-                percentageChange: i,
-                changeValue: i,
-            })
-        }
-        setWig20Stocks(stocks)
-        setIsLoaded(true)
-    }
-
     useEffect(() => {
-        // setLodaerState(0)
-        // getWig(ADRESSES.SERVER_URL_GET_WIG_20, setWig20);
-        // getWig(ADRESSES.SERVER_URL_GET_WIG_40, setWig40);
-        // getWig(ADRESSES.SERVER_URL_GET_WIG_80, setWig80);
-        // getWig20Stocks()
-        // test Data
-        setTestStocksData()
+        setLodaerState(0)
+        getWig(ADRESSES.SERVER_URL_GET_WIG_20, setWig20);
+        getWig(ADRESSES.SERVER_URL_GET_WIG_40, setWig40);
+        getWig(ADRESSES.SERVER_URL_GET_WIG_80, setWig80);
+        getWig20Stocks()
         // eslint-disable-next-line
     }, [])
 
