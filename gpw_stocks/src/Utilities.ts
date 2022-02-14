@@ -22,13 +22,13 @@ export const STOCKS_NAMES = {
 }
 
 export const ADRESSES = {
-    // SERVER_URL_GET_WIG_20: `http://localhost:8080/getWig20`,
-    // SERVER_URL_GET_WIG_40: `http://localhost:8080/getWig40`,
-    // SERVER_URL_GET_WIG_80: `http://localhost:8080/getWig80`,
-    // SERVER_URL_GET_STOCK: `http://localhost:8080/getStock`,
+    SERVER_URL_GET_WIG_20: `http://localhost:8080/getWig20`,
+    SERVER_URL_GET_WIG_40: `http://localhost:8080/getWig40`,
+    SERVER_URL_GET_WIG_80: `http://localhost:8080/getWig80`,
+    SERVER_URL_GET_STOCK: `http://localhost:8080/getStock`,
     // End Build
-    SERVER_URL_GET_WIG_20: `/getWig20`,
-    SERVER_URL_GET_WIG_40: `/getWig40`,
-    SERVER_URL_GET_WIG_80: `/getWig80`,
-    SERVER_URL_GET_STOCK: `/getStock`,
+    // SERVER_URL_GET_WIG_20: `/getWig20`,
+    // SERVER_URL_GET_WIG_40: `/getWig40`,
+    // SERVER_URL_GET_WIG_80: `/getWig80`,
+    // SERVER_URL_GET_STOCK: `/getStock`,
 }
